@@ -1,5 +1,4 @@
 import css from './MovieList.module.css';
-import PropTypes from 'prop-types';
 
 const MovieList = ({ movies }) => {
   return (
@@ -13,10 +12,6 @@ const MovieList = ({ movies }) => {
       })}
     </ul>
   );
-};
-
-MovieList.propTypes = {
-  contacts: PropTypes.array.isRequired,
 };
 
 export default MovieList;
