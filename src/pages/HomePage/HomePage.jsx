@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { fetchTrendingMovieList } from '../../api/tmdb.js';
 
 const HomePage = () => {
-  const [movies, setMovies] = useState([]);
   const { pageContainer, title } = css;
+
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const moviesData = async () => {
