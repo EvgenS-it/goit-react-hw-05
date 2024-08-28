@@ -3,6 +3,7 @@ import { Field, Form, Formik } from 'formik';
 import { fetchMovieList } from '../../api/tmdb.js';
 import MovieList from '../../components/MovieList/MovieList.jsx';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const INITIAL_VALUES = {
   searchTerm: '',
@@ -14,6 +15,7 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
   const [query, setQuery] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
     if (query === null) return;
@@ -40,6 +42,7 @@ const MoviesPage = () => {
     } else {
       setMovies([]);
       setQuery(values.searchTerm);
+      setParams({ query: values.searchTerm });
       actions.resetForm();
     }
   };

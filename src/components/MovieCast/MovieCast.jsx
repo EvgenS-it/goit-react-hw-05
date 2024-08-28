@@ -37,8 +37,9 @@ const MovieCast = () => {
     <ul className={css.list}>
       {cast.map(actor => {
         return (
-          <li key={actor.id}>
+          <li key={actor.id} className={css.item}>
             <img
+              className={css.image}
               src={`${variables.API_IMAGE_URL}${actor.profile_path}`}
               alt={actor.name}
             />

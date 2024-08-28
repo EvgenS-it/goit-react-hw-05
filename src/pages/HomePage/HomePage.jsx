@@ -6,7 +6,7 @@ import { fetchTrendingMovieList } from '../../api/tmdb.js';
 const HomePage = () => {
   const { pageContainer, title } = css;
 
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
 
   useEffect(() => {
     const moviesData = async () => {
@@ -25,7 +25,7 @@ const HomePage = () => {
   return (
     <div className={pageContainer}>
       <h1 className={title}>Trending Today</h1>
-      <MovieList movies={movies} />
+      {!movies ? <h2>LOADING...</h2> : <MovieList movies={movies} />}
     </div>
   );
 };

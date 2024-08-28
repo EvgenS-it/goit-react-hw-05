@@ -1,0 +1,32 @@
+.article {
+}
+.mainInfo {
+  display: flex;
+  padding: 15px 0;
+}
+
+.image {
+  max-width: 350px;
+}
+
+.content {
+  padding: 0 15px;
+}
+
+.navigation {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.link {
+  color: currentColor;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.active {
+  color: red;
+  text-decoration: underline;
+}

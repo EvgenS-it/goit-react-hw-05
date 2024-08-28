@@ -49,17 +49,16 @@ const MovieDetailsPage = () => {
   const releaseYear = new Date(movie.release_date).getFullYear();
 
   return (
-    <article className={css.movie}>
+    <article className={css.article}>
       <Link to={backLinkHref} className={css.button}>
         ↩ Go back
       </Link>
-      <div className={css.header}>
-        <div className={css.image}>
-          <img
-            src={`${variables.API_IMAGE_URL}${movie.poster_path}`}
-            alt={movie.title}
-          />
-        </div>
+      <div className={css.mainInfo}>
+        <img
+          className={css.image}
+          src={`${variables.API_IMAGE_URL}${movie.poster_path}`}
+          alt={movie.title}
+        />
         <div className={css.content}>
           <h1>
             {movie.title} ({releaseYear})
@@ -77,7 +76,7 @@ const MovieDetailsPage = () => {
       </div>
 
       <h3>Additional information</h3>
-      <ul className={css.additional}>
+      <ul className={css.navigation}>
         <li>
           <NavLink to="cast" className={classNames} state={location.state}>
             Cast
