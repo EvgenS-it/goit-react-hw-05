@@ -1,12 +1,14 @@
 .navigation {
   display: flex;
   gap: 10px;
+  background-color: rgb(184, 184, 187);
+  padding: 15px;
 }
 
 .link {
   color: currentColor;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .active {

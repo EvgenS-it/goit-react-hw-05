@@ -8,7 +8,7 @@ import { fetchMovieList } from '../../api/tmdb.js';
 import MovieList from '../../components/MovieList/MovieList.jsx';
 
 const MoviesPage = () => {
-  const { form, input, btn } = css;
+  const { formContainer, form, input, btn } = css;
 
   const [movies, setMovies] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -53,26 +53,28 @@ const MoviesPage = () => {
 
   return (
     <>
-      <Formik initialValues={INITIAL_VALUES} onSubmit={onSearch}>
-        {() => {
-          return (
-            <Form className={form}>
-              <Field
-                className={input}
-                type="text"
-                autoComplete="off"
-                autoFocus
-                name="searchTerm"
-                placeholder="Search..."
-              />
+      <div className={formContainer}>
+        <Formik initialValues={INITIAL_VALUES} onSubmit={onSearch}>
+          {() => {
+            return (
+              <Form className={form}>
+                <Field
+                  className={input}
+                  type="text"
+                  autoComplete="off"
+                  autoFocus
+                  name="searchTerm"
+                  placeholder="Search..."
+                />
 
-              <button type="submit" className={btn}>
-                Search
-              </button>
-            </Form>
-          );
-        }}
-      </Formik>
+                <button type="submit" className={btn}>
+                  Search
+                </button>
+              </Form>
+            );
+          }}
+        </Formik>
+      </div>
 
       {movies && <MovieList movies={movies} />}
       {!loading && movies !== null && movies.length === 0 && <p>No results</p>}

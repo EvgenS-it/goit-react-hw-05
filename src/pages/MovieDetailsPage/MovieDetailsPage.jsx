@@ -51,7 +51,7 @@ const MovieDetailsPage = () => {
 
   return (
     <article className={css.article}>
-      <Link to={backLinkRef.current} className={css.button}>
+      <Link to={backLinkRef.current} className={css.goBackBtn}>
         ↩ Go back
       </Link>
       <div className={css.mainInfo}>

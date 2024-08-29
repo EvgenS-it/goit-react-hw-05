@@ -1,8 +1,19 @@
-.moviesList {
+.movieList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
 }
 
 .movieItem {
+  list-style: none;
 }
 
-.link {
+.movieLink:hover {
+  color: red;
+}
+.movieImg {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 5px;
 }

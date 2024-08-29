@@ -1,0 +1,40 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  width: 100%;
+
+  .form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .input {
+      height: 32px;
+      border-radius: 6px;
+      width: 100%;
+      padding: 0 12px;
+      outline: none;
+    }
+
+    .btn {
+      width: 120px;
+      height: 32px;
+      background-color: #b8b8bb;
+      border: none;
+      border-radius: 6px;
+      color: black;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      color: red;
+      background-color: transparent;
+      border: 1px solid black;
+      font-weight: 600;
+    }
+  }
+}
