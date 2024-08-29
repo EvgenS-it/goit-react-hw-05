@@ -13,7 +13,7 @@ const NotFoundPage = lazy(() =>
 
 const Navigation = lazy(() => import('./Navigation/Navigation.jsx'));
 const MovieCast = lazy(() => import('./MovieCast/MovieCast.jsx'));
-const MovieReviews = lazy(() => import('../pages/MoviesPage/MoviesPage.jsx'));
+const MovieReviews = lazy(() => import('./MovieReviews/MovieReviews.jsx'));
 
 function App() {
   return (
