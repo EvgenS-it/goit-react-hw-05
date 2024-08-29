@@ -1,5 +1,5 @@
 import css from './MovieDetailsPage.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Link,
   NavLink,
@@ -21,7 +21,8 @@ const MovieDetailsPage = () => {
   const [error, setError] = useState(null);
 
   const location = useLocation();
-  const backLinkHref = location.state ?? '/movies';
+  // console.log('LOCATION FROM DETAILS', location);
+  const backLinkRef = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
     setError(null);
@@ -50,13 +51,17 @@ const MovieDetailsPage = () => {
 
   return (
     <article className={css.article}>
-      <Link to={backLinkHref} className={css.button}>
+      <Link to={backLinkRef.current} className={css.button}>
         ↩ Go back
       </Link>
       <div className={css.mainInfo}>
         <img
           className={css.image}
-          src={`${variables.API_IMAGE_URL}${movie.poster_path}`}
+          src={
+            movie.poster_path
+              ? `${variables.API_IMAGE_URL}${movie.poster_path}`
+              : 'https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster'
+          }
           alt={movie.title}
         />
         <div className={css.content}>
@@ -78,12 +83,12 @@ const MovieDetailsPage = () => {
       <h3>Additional information</h3>
       <ul className={css.navigation}>
         <li>
-          <NavLink to="cast" className={classNames} state={location.state}>
+          <NavLink to="cast" className={classNames}>
             Cast
           </NavLink>
         </li>
         <li>
-          <NavLink to="reviews" className={classNames} state={location.state}>
+          <NavLink to="reviews" className={classNames}>
             Reviews
           </NavLink>
         </li>

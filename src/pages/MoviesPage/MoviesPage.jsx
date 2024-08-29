@@ -1,21 +1,26 @@
 import css from './MoviesPage.module.css';
-import { Field, Form, Formik } from 'formik';
-import { fetchMovieList } from '../../api/tmdb.js';
-import MovieList from '../../components/MovieList/MovieList.jsx';
+
 import { useEffect, useState } from 'react';
+import { Field, Form, Formik } from 'formik';
 import { useSearchParams } from 'react-router-dom';
 
-const INITIAL_VALUES = {
-  searchTerm: '',
-};
+import { fetchMovieList } from '../../api/tmdb.js';
+import MovieList from '../../components/MovieList/MovieList.jsx';
 
 const MoviesPage = () => {
   const { form, input, btn } = css;
 
   const [movies, setMovies] = useState(null);
-  const [query, setQuery] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [params, setParams] = useSearchParams();
+  const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const query = searchParams.get('query');
+
+  //  for Formik
+  const INITIAL_VALUES = {
+    searchTerm: query || '',
+  };
 
   useEffect(() => {
     if (query === null) return;
@@ -25,8 +30,8 @@ const MoviesPage = () => {
         setLoading(true);
         const { data } = await fetchMovieList(query);
         setMovies([...data.results]);
-        console.log(data.results);
       } catch (err) {
+        setError(err.message);
         console.log(err);
       } finally {
         setLoading(false);
@@ -36,20 +41,19 @@ const MoviesPage = () => {
     fetchMovies();
   }, [query]);
 
-  const handleSubmit = (values, actions) => {
-    if (values.searchTerm.trim().length === 0) {
-      return;
-    } else {
-      setMovies([]);
-      setQuery(values.searchTerm);
-      setParams({ query: values.searchTerm });
-      actions.resetForm();
-    }
+  const onSearch = ({ searchTerm }) => {
+    setSearchParams({
+      query: searchTerm,
+    });
   };
+
+  if (error) {
+    return <h1>{error.message}</h1>;
+  }
 
   return (
     <>
-      <Formik initialValues={INITIAL_VALUES} onSubmit={handleSubmit}>
+      <Formik initialValues={INITIAL_VALUES} onSubmit={onSearch}>
         {() => {
           return (
             <Form className={form}>

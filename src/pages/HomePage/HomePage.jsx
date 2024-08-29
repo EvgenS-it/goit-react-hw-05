@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import { fetchTrendingMovieList } from '../../api/tmdb.js';
 
 const HomePage = () => {
-  const { pageContainer, title } = css;
-
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
@@ -13,7 +11,6 @@ const HomePage = () => {
       try {
         const { data } = await fetchTrendingMovieList();
         setMovies(data.results);
-        console.log(data.results);
       } catch (err) {
         console.log(err.message);
       }
@@ -23,10 +20,10 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className={pageContainer}>
-      <h1 className={title}>Trending Today</h1>
+    <>
+      <h1 className={css.title}>Trending Today</h1>
       {!movies ? <h2>LOADING...</h2> : <MovieList movies={movies} />}
-    </div>
+    </>
   );
 };
 

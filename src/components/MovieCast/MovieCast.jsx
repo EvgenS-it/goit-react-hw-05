@@ -40,7 +40,11 @@ const MovieCast = () => {
           <li key={actor.id} className={css.item}>
             <img
               className={css.image}
-              src={`${variables.API_IMAGE_URL}${actor.profile_path}`}
+              src={
+                actor.profile_path
+                  ? `${variables.API_IMAGE_URL}${actor.profile_path}`
+                  : 'https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+photo'
+              }
               alt={actor.name}
             />
             <h4 className={css.title}>
